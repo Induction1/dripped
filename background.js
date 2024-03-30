@@ -8,7 +8,7 @@ chrome.action.onClicked.addListener((tab) => {
   });
 
 chrome.runtime.onMessage.addListener((message) => {
-    chrome.storage.local.set({"scrapedHTML": message.html}, function() {
-        console.log(message.html);
+    chrome.storage.local.set({"scrapedHTML": message}, function() {
+        console.log(message);
     });
 });

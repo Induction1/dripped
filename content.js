@@ -1,5 +1,5 @@
 function ScrapeHTML() {
-    const htmlcontent = document.documentElement.innerHTML;
+    const htmlcontent = document.body.innerText;
 
     chrome.runtime.sendMessage({html: htmlcontent });
 }
