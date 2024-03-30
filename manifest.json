@@ -5,7 +5,8 @@
     "description": "Scrapes the HTML of the current webpage and prints it to console.",
     "permissions": ["storage", "activeTab", "scripting"],
     "background": {
-      "service_worker": "background.js"
+      "service_worker": "background.js",
+      "type": "module"
     },
     "action": {
       "default_icon": "icons/icon16.png"
