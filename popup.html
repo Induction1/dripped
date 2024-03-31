@@ -6,12 +6,15 @@
 <title>Percentage Circle</title>
 <link href="https://fonts.googleapis.com/css?family=Roboto:wght@700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body style="width: 300px; height: 400px;">
+<body>
 
     <div class="header">
-      <img src="images/dripped_logo_text.png" alt="Textual Image" id="textual-image">
+      <img src="images/text_logo2.png" alt="Textual Image" id="textual-image">
     </div>
+
+    <div class="info-scroll-container">
     <div id="percentage-circle" style="width: 200; height: 200px;">
       <svg viewBox="0 0 36 36" class="circular-chart circle-shadow">
         <path class="circle-bg"
@@ -34,7 +37,6 @@
       </svg>
     </div>
 
-    <div class="info-scroll-container">
       <div class="info-container">
         <div class="info-item">
           <span>Water Consumption</span>
@@ -53,12 +55,18 @@
           <div class="info-bar"><div class="info-fill" id="waste-fill"></div></div>
         </div>
       </div>
+
+      <div class="button-container center-row">
+        <button id="calculate">
+          <i class="fas fa-sync-alt"></i> Calculate
+        </button>        
+      </div>
+    </div>
+    
       
     <script src="popup.js"></script>
     </body>
     </html>
 
-  </div>
-</div>
 
 
