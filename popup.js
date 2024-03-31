@@ -93,16 +93,16 @@ const bar = document.getElementById(id);
 bar.style.width = value + '%';
 }
   
-
-
-chrome.runtime.sendMessage({action: "background"});
-
-updateCircle(20);
 // Example of how you might call these functions
 updateBar('water-fill', 70); // Call with dynamic values as needed
 updateBar('co2-fill', 30);
 updateBar('energy-fill', 50);
 updateBar('waste-fill', 80);
+
+
+chrome.runtime.sendMessage({action: "background"});
+
+updateCircle(20);
 
 
 
