@@ -45,30 +45,23 @@ def hello():
 @cross_origin(supports_credentials = True)
 def request_eval():
     try:
-        # print(request.json)
-        print("HI")
+        print(request.json)
         if "page_data" in request.json:
             page_data = request.json["page_data"]
             # Send page_data to OpenAI API
-            # prompt = "Take this scraped input for a clothing item and list the following in the following format. For fields that you do not find, write N/A.\nFormat:\nMaterial: [X]% [Cotton or Organic Cotton or Polyester or Lyocell or Elastane or Polyamide or Elastomultiester], [X]% [Cotton or Organic Cotton or Polyester or Lyocell or Elastane or Polyamide or Elastomultiester or Other]…\nRecycled Material: [X]%\nCountry of Origin: [United States or Laos or Vietnam…]\nCompany: [SHEIN or Amazon or GAP…]\nClothing Item: [string]"
+            prompt = "Take this scraped input for a clothing item and list the following in the following format. For fields that you do not find, write N/A.\nFormat:\nMaterial: [X]% [Cotton or Organic Cotton or Polyester or Lyocell or Elastane or Polyamide or Elastomultiester], [X]% [Cotton or Organic Cotton or Polyester or Lyocell or Elastane or Polyamide or Elastomultiester or Other]…\nRecycled Material: [X]%\nCountry of Origin: [United States or Laos or Vietnam…]\nCompany: [SHEIN or Amazon or GAP…]\nClothing Item: [string]"
 
-            # response = client.chat.completions.create(
-            #     model = "gpt-3.5-turbo",
-            #     messages = [
-            #         {"role": "system", "content": "You are helping me extract information from webscraped html content."},
-            #         {"role": "user", "content": prompt + page_data},
-            #     ]
-            # )
-            # print(response)
+            response = client.chat.completions.create(
+                model = "gpt-3.5-turbo",
+                messages = [
+                    {"role": "system", "content": "You are helping me extract information from webscraped html content."},
+                    {"role": "user", "content": prompt + page_data},
+                ]
+            )
+            print(response)
 
-            # output = response.choices[0].message.content
-            # print(output)
-            output = """Material: 50% Cotton, 50% Polyester  
-Recycled Material: N/A  
-Country of Origin: El Salvador  
-Company: Amazon  
-Clothing Item: Hanes Men's Ecosmart Fleece Sweatshirt
-"""
+            output = response.choices[0].message.content
+            print(output)
 
             data = {
                 "material": {},
