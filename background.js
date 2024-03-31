@@ -35,7 +35,7 @@ chrome.runtime.onMessage.addListener((message) => {
           console.log(message.html);
       }
 
-      chrome.storage.local.set({counter: text}, function() {
+      chrome.storage.local.set({counter: message.html}, function() {
           console.log("Message saved to local storage.");
       });
     }
