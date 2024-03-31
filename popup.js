@@ -3,7 +3,6 @@ function updateCircle(percentage) {
     const text = document.querySelector('.circle-text');
     const gradient = document.getElementById('gradient');
 
-    // Assuming a radius of 15.9155 for the SVG path as defined in the "d" attribute.
     const circumference = 2 * Math.PI * 15.9155;
     const offset = circumference - (percentage / 100 * circumference);
 
@@ -11,7 +10,6 @@ function updateCircle(percentage) {
     circle.style.strokeDashoffset = offset;
     text.textContent = `${percentage}`;
 
-    // Update the gradient based on the percentage
     updateGradientColors(gradient, percentage);
 }
 
@@ -170,7 +168,6 @@ function updateInfoBarGradient(barId, percentage2) {
 
     var infoBar = document.getElementById(barId);
     if (infoBar) {
-      // Create a linear gradient from startColor to endColor
       infoBar.style.background = `linear-gradient(to right, ${startColor}, ${endColor})`;
     }
   }
@@ -178,13 +175,11 @@ function updateInfoBarGradient(barId, percentage2) {
 
 function calculate_updates(co2_pred, energy_pred, water_pred, waste_pred) {
 
-    // Take log (log normal distribution)
     let log_co2 = Math.log10(co2_pred);
     let log_energy = Math.log10(energy_pred);
     let log_water = Math.log10(water_pred);
     let log_waste = Math.log10(waste_pred);
 
-    // Distribution values
     const co2_log_mean = 1.226684272;
     const energy_log_mean = 2.440005955;
     const water_log_mean = 2.71419296;
@@ -194,13 +189,11 @@ function calculate_updates(co2_pred, energy_pred, water_pred, waste_pred) {
     const water_log_sd = 1.279850314;
     const waste_log_sd = 0.3037760121;
 
-    // Find distances
     let dist_co2 = (log_co2 - co2_log_mean) / co2_log_sd;
     let dist_energy = (log_energy - energy_log_mean) / energy_log_sd;
     let dist_water = (log_water - water_log_mean) / water_log_sd;
     let dist_waste = (log_waste - waste_log_mean) / waste_log_sd;
 
-    // Redistribute (all final value variables will be between 0 and 100) FEED THESE NEXT 4 VALUES INTO THE BAR FUNCTION, AND final_score INTO THE CIRCLE FUNCTION
     let co2_final = 100 * Math.min(Math.max(0.01, 0.5 - 0.3 * dist_co2), 1);
     let energy_final = 100 * Math.min(Math.max(0.01, 0.5 - 0.3 * dist_energy), 1);
     let water_final = 100 * Math.min(Math.max(0.01, 0.5 - 0.3 * dist_water), 1);
@@ -210,7 +203,6 @@ function calculate_updates(co2_pred, energy_pred, water_pred, waste_pred) {
 
     final_score = Math.round((0.25*co2_final + 0.15*energy_final + 0.5*water_final + 0.1*waste_final));
 
-    //Flip the bars so that higher filling is worse
     co2_final = 100 - co2_final;
     energy_final = 100 - energy_final;
     water_final = 100 - water_final;
