@@ -14,7 +14,7 @@
   }
 
   #textual-image {
-      width: 70px; /* Adjust based on your textual image's size */
+      width: 100px; /* Adjust based on your textual image's size */
       height: auto;
       margin: 0 auto;
   }
@@ -22,6 +22,11 @@
   /* Ensure the rest of the content does not overlap */
   body {
       padding-top: 10px; /* Adjust based on the height of your header */
+  }
+
+  .svg-container {
+    display: flex;
+    justify-content: center; /* Center the circle horizontally */
   }
 
   .circular-chart {
@@ -56,13 +61,18 @@
     text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2); /* subtle shadow for depth */
   }
 
-
   .circle-shadow {
     filter: drop-shadow(0px 0px 5px rgba(0,0,0,0.1));
   }
+
+  #percentage-circle {
+  display: flex;
+  justify-content: center; /* Center the circle horizontally */
+  margin: auto; /* This will help with horizontal centering if needed */
+  }
 </style>
 </head>
-<body>
+<body style="width: 300px; height: 400px;">
 
 <div class="header">
   <img src="images/text_logo.png" alt="Textual Image" id="textual-image">
@@ -85,7 +95,7 @@
       <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#ffffff;stop-opacity:1" />
     </linearGradient>
-    <text x="18" y="18" class="circle-text">0%</text>
+    <text x="18" y="18" class="circle-text">0</text>
   </svg>
 </div>
 
