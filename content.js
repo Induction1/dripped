@@ -7,7 +7,8 @@ function ScrapeHTML() {
 
     chrome.runtime.sendMessage({
         html: htmlcontent,
-        containsAmazon: containsAmazon
+        containsAmazon: containsAmazon,
+        action: "log"
     });
 }
 
