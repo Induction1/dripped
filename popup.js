@@ -190,6 +190,11 @@ function calculate_updates(co2_pred, energy_pred, water_pred, waste_pred) {
         waste_pred = -1 * waste_pred / 10;
         console.log("waste_pred")
     }
+    
+    document.getElementById("co2_pred").innerText = `${Math.round(co2_pred)}  kg co2 per kg clothing`
+    document.getElementById("energy_pred").innerText = `${Math.round(energy_pred)} MJ per kg clothing`
+    document.getElementById("water_pred").innerText = `${Math.round(water_pred)} gal per kg clothing`
+    document.getElementById("waste_pred").innerText = `${Math.round(waste_pred * 10**3) / 10**3} kg waste per kg clothing`
 
     let log_co2 = Math.log10(co2_pred);
     let log_energy = Math.log10(energy_pred);
@@ -268,7 +273,7 @@ chrome.runtime.onMessage.addListener(async(message) => {
         // data = [59.42028986, 1023.07009, 58460.06815, 0.9760425909]
         let [co2_pred, energy_pred, water_pred, waste_pred] = data.output
 
-        document.getElementById("clothing-title").innerText = `${data.clothing}`
+        document.getElementById("clothing-title").innerText = `Sustainability of ${data.clothing}`
         document.getElementById("composition").innerText = data.material_string
         document.getElementById("country").innerText = data.country
         document.getElementById("distance").innerText = data.transportationDistance

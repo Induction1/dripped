@@ -84,10 +84,15 @@ padding: 0px;
 }
 
 .info-item {
-font-family: 'Rubik', sans-serif;
-/* font-weight: bold; */
-width: 90%; /* Adjust the width as needed */
-margin: 10px 0;
+  font-family: 'Rubik', sans-serif;
+  /* font-weight: bold; */
+  width: 90%; /* Adjust the width as needed */
+  margin: 10px 0;
+}
+
+.info-item-header {
+  display: flex;
+  justify-content: space-between;
 }
 
 .info-bar {
