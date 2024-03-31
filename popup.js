@@ -267,7 +267,7 @@ chrome.runtime.onMessage.addListener(async(message) => {
 
         if (data.output === "error") {
             console.log("ERROR")
-            document.getElementById("clothing-title").innerText = `Not enough information for results :(`
+            document.getElementById("clothing-title").innerText = `Not enough information for results :( \n Try again!`
             return
         }
         console.log("DATA", data)
