@@ -18,9 +18,6 @@ import {amazonMessage} from './helpers.js';
           files: ['content.js']
         });
       });
-
-    
-
     }
 });
 

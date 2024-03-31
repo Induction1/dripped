@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "HTML Scraper",
-    "version": "1.0",
+    "version": "1.880",
     "description": "Scrapes the HTML of the current webpage and prints it to console.",
     "permissions": ["storage", "activeTab", "scripting"],
     "background": {
