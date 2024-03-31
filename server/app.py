@@ -50,25 +50,35 @@ def request_eval():
         if "page_data" in request.json:
             page_data = request.json["page_data"]
             # Send page_data to OpenAI API
-            prompt = "Take this scraped input for a clothing item and list the following in the following format. For fields that you do not find, write N/A.\nFormat:\nMaterial: [X]% [Cotton or Organic Cotton or Polyester or Lyocell or Elastane or Polyamide or Elastomultiester], [X]% [Cotton or Organic Cotton or Polyester or Lyocell or Elastane or Polyamide or Elastomultiester or Other]…\nRecycled Material: [X]%\nCountry of Origin: [United States or Laos or Vietnam…]\nCompany: [SHEIN or Amazon or GAP…]"
+            # prompt = "Take this scraped input for a clothing item and list the following in the following format. For fields that you do not find, write N/A.\nFormat:\nMaterial: [X]% [Cotton or Organic Cotton or Polyester or Lyocell or Elastane or Polyamide or Elastomultiester], [X]% [Cotton or Organic Cotton or Polyester or Lyocell or Elastane or Polyamide or Elastomultiester or Other]…\nRecycled Material: [X]%\nCountry of Origin: [United States or Laos or Vietnam…]\nCompany: [SHEIN or Amazon or GAP…]\nClothing Item: [string]"
 
-            response = client.chat.completions.create(
-                model = "gpt-3.5-turbo",
-                messages = [
-                    {"role": "system", "content": "You are helping me extract information from webscraped html content."},
-                    {"role": "user", "content": prompt + page_data},
-                ]
-            )
-            print(response)
+            # response = client.chat.completions.create(
+            #     model = "gpt-3.5-turbo",
+            #     messages = [
+            #         {"role": "system", "content": "You are helping me extract information from webscraped html content."},
+            #         {"role": "user", "content": prompt + page_data},
+            #     ]
+            # )
+            # print(response)
 
-            output = response.choices[0].message.content
-            print(output)
+            # output = response.choices[0].message.content
+            # print(output)
+            output = """Material: 50% Cotton, 50% Polyester  
+Recycled Material: N/A  
+Country of Origin: El Salvador  
+Company: Amazon  
+Clothing Item: Hanes Men's Ecosmart Fleece Sweatshirt
+"""
 
             data = {
                 "material": {},
+                "material_string": "N/A",
                 "transportationDistance": 8000,
-                "company": "",
+                "company": "N/A",
                 "recycled": 0,
+                "recycled_string:": "N/A",
+                "country": "N/A",
+                "clothing": "N/A"
             }
             print(data)
             valid_materials = ["Cotton", "Organic Cotton", "Polyester", "Lyocell", "Elastane", "Polyamide", "Elastomultiester"]
@@ -76,8 +86,9 @@ def request_eval():
                 print("my", line)
                 
                 if "Material: " in line and not "Recycled Material: " in line:
-                    materials = line[line.index("Material: ") + len("Material: "):]
-                    materials = list(map(lambda x: x.split(" "), materials.split(", ")))
+                    materials = line[line.index("Material: ") + len("Material: "):].rstrip()
+                    data["material_string"] = materials
+                    materials = list(map(lambda x: [x[:x.index(" ")], x[x.index(" ") + 1:]], materials.split(", ")))
                     materials = list(map(lambda x: (int(x[0][:-1]) / 100, x[1]), materials))
                     mat_sum = 0
                     for k, v in materials:
@@ -91,13 +102,19 @@ def request_eval():
                     print(data)
                 
                 if "Country of Origin: " in line:
-                    country = line[line.index("Country of Origin: ") + len("Country of Origin: "):].lower()
-                    if country in country_dict:
-                        data["transportationDistance"] = distance(country_dict[country], country_dict["united states"])
+                    data["country"] = line[line.index("Country of Origin: ") + len("Country of Origin: "):].rstrip()
 
                 if "Company: " in line:
-                    data["company"] = line[line.index("Company: ") + len("Company: "):]
+                    data["company"] = line[line.index("Company: ") + len("Company: "):].rstrip()
 
+                if "Clothing Item: " in line:
+                    data["clothing"] = line[line.index("Clothing Item: ") + len("Clothing Item: "):].rstrip()
+
+                if "Recycled Material: " in line:
+                    recycled_string = line[line.index("Recycled Material: ") + len("Recycled Material: "):].rstrip()
+                    data["recycled_string"] = recycled_string
+                    if not "N/A" in recycled_string and "%" in recycled_string:
+                        data["recycled"] = int(recycled_string[:recycled_string.index("%")]) / 100
 
             # Create input embedding
             input_embedding = np.array([
@@ -116,10 +133,17 @@ def request_eval():
             print(input_embedding)
             print(output)
             print("about to jsonify")
+            print("is?", data["country"].lower(), data["country"].lower() in country_dict)
             response = make_response(
-                jsonify(
-                    {"output": output}
-                ),
+                jsonify({
+                    "output": output,
+                    "company": data["company"],
+                    "country": data["country"],
+                    "transportationDistance": f'{round(distance(country_dict[data["country"].lower()], country_dict["united states"]))} miles' if data["country"].lower() in country_dict else "N/A",
+                    "clothing": data["clothing"],
+                    "material_string": data["material_string"],
+                    "recycled_string": data["recycled_string"]
+                }),
                 200,
             )
             print(response)
