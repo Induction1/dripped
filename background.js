@@ -24,20 +24,8 @@ let currurl = "";
 chrome.runtime.onMessage.addListener(async(message) => {
     if (message.action === "log") {
       if (message.url && currurl != message.url) {
+        chrome.runtime.sendMessage({action: "request", html: message.html});
         currurl = message.url;
-        /*
-        let response = await fetch('http://localhost:3000/log', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({message: message.html}),
-        });
-
-        let data = await response.json();
-
-        console.log(message.html);
-        */
       }
     }
 });
