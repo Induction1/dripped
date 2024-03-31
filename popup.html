@@ -1,21 +1,94 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Popup</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Percentage Circle</title>
+<link href="https://fonts.googleapis.com/css?family=Roboto:wght@700&display=swap" rel="stylesheet">
+<style>
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+
+  #textual-image {
+      width: 70px; /* Adjust based on your textual image's size */
+      height: auto;
+      margin: 0 auto;
+  }
+
+  /* Ensure the rest of the content does not overlap */
+  body {
+      padding-top: 10px; /* Adjust based on the height of your header */
+  }
+
+  .circular-chart {
+    display: block;
+    margin: 10px auto;
+    max-width: 100%;
+    max-height: 250px;
+  }
+
+  .circle-bg {
+    fill: none;
+    stroke: #e6e6e6;
+    stroke-width: 3.8;
+  }
+
+  .circle-progress {
+    fill: none;
+    stroke-width: 3.8;
+    stroke-linecap: round;
+    transform: rotate(0deg);
+    transform-origin: 50% 50%;
+    transition: stroke-dashoffset 2s 0s, stroke 0.6s ease;
+  }
+
+  .circle-text {
+    fill: #0da5b9; /* White text color for better contrast */
+    font-family: 'Roboto', sans-serif; /* A Google Font, make sure to include it in your HTML */
+    font-size: 5vw; /* Responsive font size */
+    font-weight: bold; /* Make the text bold */
+    text-anchor: middle;
+    dominant-baseline: central;
+    text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2); /* subtle shadow for depth */
+  }
+
+
+  .circle-shadow {
+    filter: drop-shadow(0px 0px 5px rgba(0,0,0,0.1));
+  }
+</style>
 </head>
 <body>
-    <script src="popup.js"></script>
-    <div class="popup">
-        <div class="text">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla at porta sapien. Quisque sapien justo, fringilla consectetur molestie eu, hendrerit vehicula purus. Pellentesque ac ante urna.
-        </div>
-        <div class="buttons">
-          <button>Really long text that will make the buttons push out the parrent div</button>
-          <button>text</button>
-        </div>
-      </div>
+
+<div class="header">
+  <img src="images/text_logo.png" alt="Textual Image" id="textual-image">
+</div>
+<div id="percentage-circle" style="width: 100px; height: 100px;">
+  <svg viewBox="0 0 36 36" class="circular-chart circle-shadow">
+    <path class="circle-bg"
+          d="M18 2.0845
+            a 15.9155 15.9155 0 0 1 0 31.831
+            a 15.9155 15.9155 0 0 1 0 -31.831"
+    />
+    <path class="circle-progress"
+          stroke="url(#gradient)" // Gradient stroke here
+          d="M18 2.0845
+            a 15.9155 15.9155 0 0 1 0 31.831
+            a 15.9155 15.9155 0 0 1 0 -31.831"
+          stroke-dasharray="0, 100"
+    />
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:1" />
+    </linearGradient>
+    <text x="18" y="18" class="circle-text">0%</text>
+  </svg>
+</div>
+
+<script src="popup.js"></script>
 </body>
 </html>

@@ -1,0 +1,25 @@
+.popup {
+    border: 1px solid;
+    border-radius: 4px;
+    padding: 10px;
+    box-sizing: border-box;
+    min-width: 370px;
+    display: inline-flex;
+    flex-direction: column;
+  }
+  
+  .text {
+    width: 0;
+    min-width: 100%;
+  }
+  
+  .buttons {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    white-space: nowrap;
+  }
+  
+  button + button {
+    margin-left: 10px;
+  }
