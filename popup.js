@@ -86,13 +86,23 @@ function updateGradientColors(gradient, percentage) {
         stops[0].style.stopColor = '#590e0e';
         stops[1].style.stopColor = '#851414';
     }
-
 }
+
+function updateBar(id, value) {
+const bar = document.getElementById(id);
+bar.style.width = value + '%';
+}
+  
 
 
 chrome.runtime.sendMessage({action: "background"});
 
 updateCircle(20);
+// Example of how you might call these functions
+updateBar('water-fill', 70); // Call with dynamic values as needed
+updateBar('co2-fill', 30);
+updateBar('energy-fill', 50);
+updateBar('waste-fill', 80);
 
 
 
