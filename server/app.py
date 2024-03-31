@@ -132,7 +132,7 @@ def request_eval():
                     "output": output,
                     "company": data["company"],
                     "country": data["country"],
-                    "transportationDistance": f'{round(distance(country_dict[data["country"].lower()], country_dict["united states"]))} miles' if data["country"].lower() in country_dict else "8000 miles",
+                    "transportationDistance": f'{round(distance(country_dict[data["country"].lower()], country_dict["united states"]))} miles' if data["country"].lower() in country_dict else "N/A",
                     "clothing": data["clothing"],
                     "material_string": data["material_string"],
                     "recycled_string": data["recycled_string"]

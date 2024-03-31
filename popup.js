@@ -175,19 +175,19 @@ function updateInfoBarGradient(barId, percentage2) {
 
 function calculate_updates(co2_pred, energy_pred, water_pred, waste_pred) {
     if (co2_pred < 0) {
-        co2_pred = -1 * co2_pred / 100;
+        co2_pred = -1 * co2_pred / 10;
         console.log("co2_pred")
     }
     if (energy_pred < 0) {
-        energy_pred = -1 * energy_pred / 100;
+        energy_pred = -1 * energy_pred / 10;
         console.log("energy_pred")
     }
     if (water_pred < 0) {
-        water_pred = -1 * water_pred / 100;
+        water_pred = -1 * water_pred / 10;
         console.log("water_pred")
     }
     if (waste_pred < 0) {
-        waste_pred = -1 * waste_pred / 100;
+        waste_pred = -1 * waste_pred / 10;
         console.log("waste_pred")
     }
 
@@ -269,8 +269,12 @@ chrome.runtime.onMessage.addListener(async(message) => {
         let [co2_pred, energy_pred, water_pred, waste_pred] = data.output
 
         document.getElementById("clothing-title").innerText = `${data.clothing}`
-        
-        
+        document.getElementById("composition").innerText = data.material_string
+        document.getElementById("country").innerText = data.country
+        document.getElementById("distance").innerText = data.transportationDistance
+        document.getElementById("company").innerText = data.company
+        document.getElementById("recycled").innerText = data.recycled_string
+
         calculate_updates(co2_pred, energy_pred, water_pred, waste_pred);
     }
 });
