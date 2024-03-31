@@ -203,7 +203,7 @@ function calculate_updates(co2_pred, energy_pred, water_pred, waste_pred) {
 
     const co2_log_mean = 1.226684272;
     const energy_log_mean = 2.440005955;
-    const water_log_mean = 2.71419296;
+    const water_log_mean = 3.71419296;
     const waste_log_mean = -0.3910466762;
     const co2_log_sd = 0.2516036864;
     const energy_log_sd = 0.3137632172;
@@ -267,6 +267,7 @@ chrome.runtime.onMessage.addListener(async(message) => {
 
         if (data.output === "error") {
             console.log("ERROR")
+            document.getElementById("clothing-title").innerText = `Not enough information for results :(`
             return
         }
         console.log("DATA", data)

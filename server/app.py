@@ -6,6 +6,7 @@ import pandas as pd
 import math
 from dotenv import load_dotenv
 import os
+import random
 load_dotenv()
 
 df = pd.read_csv("World_Countries_Centroids.csv")
