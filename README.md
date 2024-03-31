@@ -1,2 +1,3 @@
-# water-my-clothes
-For YHack 2024
+# dripped
+
+the intuitive solution to buying clothes sustainably
