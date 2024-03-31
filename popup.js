@@ -174,6 +174,22 @@ function updateInfoBarGradient(barId, percentage2) {
   
 
 function calculate_updates(co2_pred, energy_pred, water_pred, waste_pred) {
+    if (co2_pred < 0) {
+        co2_pred = -1 * co2_pred / 10;
+        console.log("co2_pred")
+    }
+    if (energy_pred < 0) {
+        energy_pred = -1 * energy_pred / 10;
+        console.log("energy_pred")
+    }
+    if (water_pred < 0) {
+        water_pred = -1 * water_pred / 10;
+        console.log("water_pred")
+    }
+    if (waste_pred < 0) {
+        waste_pred = -1 * waste_pred / 10;
+        console.log("waste_pred")
+    }
 
     let log_co2 = Math.log10(co2_pred);
     let log_energy = Math.log10(energy_pred);
@@ -248,21 +264,21 @@ chrome.runtime.onMessage.addListener(async(message) => {
             console.log("ERROR")
             return
         }
+        console.log("DATA", data)
         // data = [59.42028986, 1023.07009, 58460.06815, 0.9760425909]
         let [co2_pred, energy_pred, water_pred, waste_pred] = data.output
+
+        document.getElementById("clothing-title").innerText = `${data.clothing}`
+        document.getElementById("composition").innerText = data.material_string
+        document.getElementById("country").innerText = data.country
+        document.getElementById("distance").innerText = data.transportationDistance
+        document.getElementById("company").innerText = data.company
+        document.getElementById("recycled").innerText = data.recycled_string
         
         
         calculate_updates(co2_pred, energy_pred, water_pred, waste_pred);
     }
 });
-
-document.addEventListener('DOMContentLoaded', function() {
-    var myButton = document.getElementById('calculate');
-    myButton.addEventListener('click', function() {
-      // Call your function here
-      console.log("WHATS UP");
-    });
-  });
 
 
 

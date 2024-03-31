@@ -1,3 +1,53 @@
+.icon-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Spacing between rows */
+}
+
+.icon-bar i {
+  font-size: 20px; /* Adjust as needed */
+  width: 25px; /* Ensure the icon width matches the size to keep alignment */
+  margin-right: 10px; /* Spacing between the icon and the bar */
+}
+
+.bar {
+  flex-grow: 1; /* Makes the bar fill the rest of the row */
+  height: 20px; /* Match your current bar height */
+  /* Add background color and any other styles you already have for your bars */
+}
+
+/* Example styles for each bar */
+.water-consumption { background-color: #3498db; }
+.co2-emissions { background-color: #e74c3c; }
+.energy-usage { background-color: #f1c40f; }
+.waste { background-color: #2ecc71; }
+
+
+.horizontal-line {
+  border-top: 1px solid #9c9c9c; /* Creates a line with a border */
+  width: 100%;
+  margin-top: -6px; /* Adjusts the position from the top. Set the margin as needed. */
+}
+
+.horizontal-line2 {
+  border-top: 1px solid #9c9c9c; /* Creates a line with a border */
+  width: 100%;
+  margin-top: 20px;
+}
+
+
+.clothing-title {
+  justify-content: center;
+  align-items: center;
+  font-family: 'Rubik', sans-serif;
+  font-size: 20px;
+  color: #05270c; /* Dark grey text */
+  background-color: hsl(0, 0%, 95%); /* Light grey background */
+  /* padding: 10px; */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 #calculate {
   padding: 10px 20px;
   font-size: 16px;
@@ -34,7 +84,9 @@ padding: 0px;
 }
 
 .info-item {
-width: 90%;
+font-family: 'Rubik', sans-serif;
+/* font-weight: bold; */
+width: 90%; /* Adjust the width as needed */
 margin: 10px 0;
 }
 
@@ -55,7 +107,7 @@ width: 0%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 5px;
+  padding-top: 10px;
 
 }
 
@@ -71,15 +123,16 @@ body {
   height: 600px;
   margin: 0;
   padding: 0;
-  background: linear-gradient(to bottom, #ddecf5 55px, #b3d3ed 65px, rgb(255, 255, 255) 65px);
+  background: linear-gradient(to bottom, #ddecf5 55px, #b3d3ed 65px, hsl(0, 0%, 95%) 65px, hsl(0, 0%, 95%) 115px, hsl(0, 0%, 100%) 115px);
+  background-repeat: no-repeat;
 }
-
 .svg-container {
   display: flex;
   justify-content: center;
 }
 
 .circular-chart {
+  padding-top: 10px;
   display: block;
   max-width: 100%;
   max-height: 250px;
@@ -101,10 +154,10 @@ body {
 }
 
 .circle-text {
-  fill: rgb(56, 128, 200);
-  font-family: 'Roboto', sans-serif;
-  font-size: 5vw;
-  font-weight: bold;
+  fill: rgb(11, 43, 122); /* White text color for better contrast */
+  font-family: 'Roboto', sans-serif; /* A Google Font, make sure to include it in your HTML */
+  font-size: 4vw; /* Responsive font size */
+  font-weight: bold; /* Make the text bold */
   text-anchor: middle;
   dominant-baseline: central;
   text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
@@ -123,4 +176,20 @@ margin: auto;
 .center-row {
   display: flex;
   justify-content: center;
+}
+
+.more-info {
+  margin: 20px;
+}
+
+.more-info-label {
+  font-family: 'Rubik', sans-serif;
+  margin-right: 5px;
+}
+
+.more-info-entry {
+  font-size: 14px;
+  margin: 0 5px;
+  display: flex;
+  align-items: center;
 }
