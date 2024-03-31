@@ -7,10 +7,10 @@ import {amazonMessage} from './helpers.js';
 //     });
 //   });
 
+let currurl = "";
+
   chrome.runtime.onMessage.addListener((message) => {
     if (message.action === "background") {
-
-      console.log("WE ARE HERE!");
 
       chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
         chrome.scripting.executeScript({
@@ -21,19 +21,23 @@ import {amazonMessage} from './helpers.js';
     }
 });
 
-chrome.runtime.onMessage.addListener((message) => {
+chrome.runtime.onMessage.addListener(async(message) => {
     if (message.action === "log") {
+      if (message.url && currurl != message.url) {
+        currurl = message.url;
+        /*
+        let response = await fetch('http://localhost:3000/log', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({message: message.html}),
+        });
 
-      console.log("HEREEEEEEEEE!");
+        let data = await response.json();
 
-      if (message.containsAmazon) {
-          console.log(amazonMessage(message.html, "Sponsored", "Products related to this item"));
-      } else {
-          console.log(message.html);
+        console.log(message.html);
+        */
       }
-
-      chrome.storage.local.set({counter: message.html}, function() {
-          console.log("Message saved to local storage.");
-      });
     }
 });

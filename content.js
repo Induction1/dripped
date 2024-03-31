@@ -6,6 +6,7 @@ function ScrapeHTML() {
     const containsAmazon = url.includes("amazon.com/");
 
     chrome.runtime.sendMessage({
+        url: url,
         html: htmlcontent,
         containsAmazon: containsAmazon,
         action: "log"
