@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "HTML Scraper",
-    "version": "1.880",
-    "description": "Scrapes the HTML of the current webpage and prints it to console.",
+    "name": "dripped",
+    "version": "1.0",
+    "description": "a web extension that helps consumers make sustainable shopping decisions by estimating the environmental impact of apparel items",
     "permissions": ["storage", "activeTab", "scripting"],
     "background": {
       "service_worker": "background.js",
